@@ -22,6 +22,7 @@ gem 'grape-entity'
 gem 'devise'
 gem 'activeadmin'
 gem 'active_skin'
+gem 'puma'
 
 
 group :development, :test do

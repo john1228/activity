@@ -12,7 +12,7 @@ module Api
 
     private
     def apply_params
-      params.permit(:name, :mobile, :email).merge(activity_id: 0)
+      params.require(:ace).permit(:name, :mobile, :email).merge(activity_id: 0)
     end
   end
 end
