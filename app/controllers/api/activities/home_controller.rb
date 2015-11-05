@@ -1,6 +1,6 @@
 module Api
   module Activities
-    class HomeController < ActionController::Base
+    class HomeController < ApplicationController
       def index
         render json: {activity: Activity.order(id: :desc).page(params[:page]||1)}
       end

@@ -1,5 +1,5 @@
 module Activities
-  class HomeController < ActionController::Base
+  class HomeController < ApplicationController
     def index
       render json: {shows: Apply.where(activity_id: params[:id]).page(params[:page]||1)}
     end

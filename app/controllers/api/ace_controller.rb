@@ -1,5 +1,5 @@
 module Api
-  class AceController < ActionController::Base
+  class AceController < ApplicationController
     def apply
       apply = Apply.new(apply_params)
       if apply.save
