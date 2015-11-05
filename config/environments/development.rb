@@ -39,13 +39,15 @@ Rails.application.configure do
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  config.action_mailer.delivery_method =:smtp
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       :address => "smtp.exmail.qq.com",
       :port => 465,
-      :domain => "qq.com",
-      :authentication => :login,
-      :user_name => "junwei@e-mxing.com", #你的邮箱
-      :password => "woaini1228" #你的密码
+      :domain => "e-mxing.com",
+      :authentication => :plain,
+      :user_name => "js@e-mxing.com",
+      :password => "wjl13585753578",
+      :enable_starttls_auto => true
   }
 end

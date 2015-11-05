@@ -10,7 +10,7 @@ class CreateActivities < ActiveRecord::Migration
       t.string :address
       t.string :gather
       t.integer :limit
-      t.integer :integer
+      t.integer :fee
       t.text :stay
       t.text :insurance
       t.text :tip
