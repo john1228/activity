@@ -1,12 +1,13 @@
 module Api
   class AceController < ActionController::Base
     def apply
+      response.headers['Access-Control-Allow-Origin'] = 'http://act.e-mxing.com'
       apply = Apply.new(apply_params)
       if apply.save
+        NoticeMailer.deliver_send_mail({to: apply.email})
         render json: {code: 1}
       else
         render json: {code: 0, message: apply.errors.messages.values.join(';')}
-
       end
     end
 
