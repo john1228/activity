@@ -1,5 +1,4 @@
-class NoticeMailer < ApplicationMailer
-
+class AceMailer < ApplicationMailer
   def send_mail(params={})
     @name = params[:name]
     @code = params[:code]

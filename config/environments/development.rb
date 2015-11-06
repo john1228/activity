@@ -46,8 +46,11 @@ Rails.application.configure do
       :port => 465,
       :domain => "e-mxing.com",
       :authentication => :plain,
+      :openssl_verify_mode => "none",
       :user_name => "js@e-mxing.com",
       :password => "wjl13585753578",
-      :enable_starttls_auto => true
+      :enable_starttls_auto => true,
+      :ssl => true,
+      :tls => true,
   }
 end

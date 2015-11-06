@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "hr@e-mxing.com"
+  default from: "js@e-mxing.com"
   #layout false
 end
