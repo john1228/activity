@@ -10,7 +10,7 @@ class AceMailer < ApplicationMailer
     attachments.inline['6.jpg'] = File.read("#{Rails.root}/app/assets/images/6.jpg")
     mail(
         :subject => 'ACE报名提醒',
-        :to => 'junwei@e-mxing.com'
+        :to => params[:to]
     )
   end
 end
