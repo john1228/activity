@@ -18,6 +18,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'mysql2'
 gem 'grape'
 gem 'grape-entity'
+gem 'sidekiq'
+gem 'sidekiq-status'
 
 gem 'devise'
 gem 'activeadmin'

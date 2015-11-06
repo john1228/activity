@@ -5,8 +5,7 @@ module Api
     def apply
       apply = Apply.new(apply_params)
       if apply.save
-        AceMailer.send_mail({to: apply.email, name: apply.name, code: '%06d' % apply.id}).deliver_later
-        AceMailer.send_mail({to: 'supeng@e-mxing.com', name: apply.name, code: '%06d' % apply.id}).deliver_later
+        PostmanJob.perform_later(apply.email, apply.name, '%05d'%apply.id)
         response.headers['Access-Control-Allow-Origin'] = '*'
         render json: {code: 1}
       else
