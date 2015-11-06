@@ -3,10 +3,11 @@ module Api
     protect_from_forgery
 
     def apply
-      response.headers['Access-Control-Allow-Origin'] = 'http://act.e-mxing.com'
       apply = Apply.new(apply_params)
       if apply.save
         AceMailer.send_mail({to: apply.email, name: apply.name, code: '%06d' % apply.id}).deliver_later
+        AceMailer.send_mail({to: 'supeng@e-mxing.com', name: apply.name, code: '%06d' % apply.id}).deliver_later
+        response.headers['Access-Control-Allow-Origin'] = '*'
         render json: {code: 1}
       else
         render json: {code: 0, message: apply.errors.messages.values.join(';')}
