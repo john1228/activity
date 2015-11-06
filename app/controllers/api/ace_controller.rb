@@ -1,5 +1,6 @@
 module Api
   class AceController < ApplicationController
+    protect_from_forgery
     def apply
       apply = Apply.new(apply_params)
       if apply.save
