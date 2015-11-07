@@ -9,6 +9,7 @@ module Api
         response.headers['Access-Control-Allow-Origin'] = '*'
         render json: {code: 1}
       else
+        response.headers['Access-Control-Allow-Origin'] = '*'
         render json: {code: 0, message: apply.errors.messages.values.join(';')}
       end
     end
