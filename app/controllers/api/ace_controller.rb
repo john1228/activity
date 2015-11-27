@@ -3,7 +3,7 @@ module Api
     protect_from_forgery
 
     def apply
-      apply = Apply.new(apply_params)
+      apply = Apply.ace.new(apply_params)
       if apply.save
         PostmanJob.perform_later(apply.email, apply.name, '%05d'%apply.id)
         SmsJob.perform_later(apply.mobile, SMS['通知'], ["#{apply.name}", 'ACE'])
@@ -17,7 +17,7 @@ module Api
 
     private
     def apply_params
-      params.require(:ace).permit(:name, :mobile, :email).merge(activity_id: 0)
+      params.require(:ace).permit(:name, :mobile, :email)
     end
   end
 end

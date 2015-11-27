@@ -4,5 +4,5 @@ class Apply < ActiveRecord::Base
   validates_presence_of :email, message: '请填写您的邮箱', if: Proc.new { |apply| apply.ace? }
   validates_uniqueness_of :mobile, message: '该手机号码已经报名'
   validates_uniqueness_of :email, message: '该邮箱已经使用', if: Proc.new { |apply| apply.ace? }
-  enum activity_id: [:ace]
+  enum activity_id: [:ace, :nj]
 end
