@@ -12,7 +12,8 @@ module Api
                        current: running.as_json(only: [:name, :cover, :phase, :follows_count, :url]),
                        history: Running.where('phase < ?', params[:phase]).page(params[:page]||1).map { |history_running|
                          history_running.as_json(only: [:name, :cover, :phase, :follows_count, :url])
-                       }
+                       },
+                       comment: Comment.running.where(source_id: running.id).count
                    }
                }
       end
