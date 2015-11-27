@@ -7,6 +7,7 @@ module Api
       if apply.save
         PostmanJob.perform_later(NjMailer.name, apply.email, apply.name, '%05d'%apply.id)
         SmsJob.perform_later(apply.mobile, SMS['通知'], ["#{apply.name}", '美型-王宁运动学院(南京)'])
+        SmsJob.perform_later(18251920722, SMS['通知'], ["#{apply.name}", '美型-王宁运动学院(南京)'])
         render json: {code: 1}
       else
         render json: {code: 0, message: apply.errors.messages.values.join(';')}
