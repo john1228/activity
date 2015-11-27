@@ -6,8 +6,8 @@ module Api
 
       def index
         running = Running.find_by(phase: params[:phase])
-        if running
-          running.update(views_count: running.views_count +1)
+        if running.present?
+          running.update_attribute(:views_count, running.views_count + 1)
           render json: {
                      code: 1,
                      data: {
@@ -37,7 +37,7 @@ module Api
 
       def like
         running = Running.find_by(phase: params[:phase])
-        if running.update(likes_count: running.likes_count +1)
+        if running.update_attribute(:likes_count, running.likes_count + 1)
           render json: {code: 1}
         else
           render json: {code: 0, message: '已经关注'}
