@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104130008) do
+ActiveRecord::Schema.define(version: 20151125040618) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -90,6 +90,45 @@ ActiveRecord::Schema.define(version: 20151104130008) do
     t.string   "email",       limit: 255
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "source",     limit: 255
+    t.integer  "source_id",  limit: 4
+    t.integer  "user_id",    limit: 4
+    t.string   "content",    limit: 255
+    t.string   "image",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.string   "source",     limit: 255
+    t.integer  "link_id",    limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "runnings", force: :cascade do |t|
+    t.integer  "phase",         limit: 4
+    t.string   "name",          limit: 255
+    t.integer  "follows_count", limit: 4,   default: 0
+    t.string   "cover",         limit: 255
+    t.string   "url",           limit: 255
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "mobile",     limit: 255
+    t.string   "password",   limit: 255
+    t.string   "name",       limit: 255
+    t.string   "gender",     limit: 255
+    t.string   "salt",       limit: 255
+    t.string   "source",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
 end
