@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     namespace :runnings do
       post 'captcha' => 'captcha#create'
 
-      post 'users/login' => 'users#login'
+      post 'user/login' => 'users#login'
       post 'user' => 'users#create'
 
       get ':phase' => 'home#index'

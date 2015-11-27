@@ -8,6 +8,7 @@ module Api
         if true #captcha.eql?(params[:captcha])
           user = User.running.new(user_params)
           if user.save
+            Rails.cache.write(user.token, user)
             render json: {code: 1, data: user.as_json(only: :name, methods: :token)}
           else
             render json: {code: 0, message: '注册失败'}
@@ -21,9 +22,10 @@ module Api
       def login
         user = User.login(login_params)
         if user.present?
-          Rails.cache.fetch(user.token, user)
+          Rails.cache.write(user.token, user)
           render json: {code: 1, data: user.as_json(only: :name, methods: :token)}
         else
+          render json: {code: 0, message: '您还未注册或者密码不正确'}
         end
       end
 

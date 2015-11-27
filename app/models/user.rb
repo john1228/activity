@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   enum source: [:running]
-  before_update :encrypted_password
+  before_save :encrypted_password
   class << self
     def login(login_params = {})
       user = User.find_by(mobile: login_params[:mobile])

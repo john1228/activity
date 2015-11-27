@@ -12,6 +12,7 @@ module Api
                      data: Comment.running.where(source_id: running.id).order(id: :desc).page(params[:page]||1).map { |comment|
                        comment.as_json(
                            only: [:id, :content, :likes_count],
+                           methods: :created,
                            include: {
                                user: {only: [:id, :name]},
                                replier: {only: [:id, :name]}
@@ -27,9 +28,17 @@ module Api
 
       def create
         running = Running.find_by(phase: params[:phase])
-        comment = Comment.running.new(comment_params.merge(source_id: running.id))
+        comment = Comment.running.new(comment_params.merge(source_id: running.id, user_id: @user.id))
         if comment.save
-          render json: {code: 1}
+          render json: {
+                     code: 1,
+                     data: comment.as_json(
+                         only: [:id, :content, :likes_count, :created_at],
+                         include: {
+                             user: {only: [:id, :name]},
+                             replier: {only: [:id, :name]}
+                         }
+                     )}
         else
           render json: {code: 0}
         end
@@ -51,7 +60,9 @@ module Api
       end
 
       def auth_user
+        logger.info('<<<' + request.headers[:token])
         @user = Rails.cache.fetch(request.headers[:token])
+        render json: {code: 1, message: '您还未登录'} if @user.blank?
       end
     end
   end
