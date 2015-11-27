@@ -1,7 +1,7 @@
 class SmsJob < ActiveJob::Base
   queue_as :default
 
-  def perform(mobile, datas)
+  def perform(mobile, templateid, datas)
     conn = Faraday.new(url: 'https://sandboxapp.cloopen.com:8883')
     timestamp = Time.now.strftime('%Y%m%d%H%M%S')
     account = 'aaf98f894b0b8616014b19c5e46709c3'
