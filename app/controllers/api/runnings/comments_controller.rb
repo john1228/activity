@@ -33,7 +33,8 @@ module Api
           render json: {
                      code: 1,
                      data: comment.as_json(
-                         only: [:id, :content, :likes_count, :created_at],
+                         only: [:id, :content, :likes_count],
+                         methods: :created,
                          include: {
                              user: {only: [:id, :name]},
                              replier: {only: [:id, :name]}

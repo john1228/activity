@@ -10,5 +10,7 @@ class CreateComments < ActiveRecord::Migration
       t.integer :likes_count, default: 0
       t.timestamps null: false
     end
+
+    add_column :comments, :reply_id, :integer
   end
 end

@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
       get ':phase' => 'home#index'
       post ':phase' => 'home#follow'
+      post ':phase/like' => 'home#like'
+
       get ':phase/comments' => 'comments#index'
       post ':phase/comments' => 'comments#create'
       post ':phase/comments/:id' => 'comments#like'
