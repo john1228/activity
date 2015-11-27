@@ -5,7 +5,7 @@ module Api
 
       def create
         captcha = Rails.cache.fetch(params[:mobile])
-        if true #captcha.eql?(params[:captcha])
+        if captcha.eql?(params[:captcha])
           user = User.running.new(user_params)
           if user.save
             Rails.cache.write(user.token, user)
