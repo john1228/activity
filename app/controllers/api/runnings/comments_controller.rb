@@ -2,7 +2,7 @@ module Api
   module Runnings
     class CommentsController < ApplicationController
       protect_from_forgery
-      before_filter :auth_user, except: :index
+      before_filter :auth_user, except: [:index, :like]
 
       def index
         running = Running.find_by(phase: params[:phase])
@@ -10,7 +10,13 @@ module Api
           render json: {
                      code: 1,
                      data: Comment.running.where(source_id: running.id).order(id: :desc).page(params[:page]||1).map { |comment|
-                       comment.as_json(only: [:content, :likes_count], include: {user: {only: :name}})
+                       comment.as_json(
+                           only: [:id, :content, :likes_count],
+                           include: {
+                               user: {only: [:id, :name]},
+                               replier: {only: [:id, :name]}
+                           }
+                       )
                      }
                  }
         else
@@ -20,7 +26,8 @@ module Api
       end
 
       def create
-        comment = Comment.running.new(comment_params)
+        running = Running.find_by(phase: params[:phase])
+        comment = Comment.running.new(comment_params.merge(source_id: running.id))
         if comment.save
           render json: {code: 1}
         else
@@ -40,11 +47,11 @@ module Api
 
       private
       def comment_params
-        params.permit(:content)
+        params.permit(:reply_id, :content)
       end
 
       def auth_user
-        Rails.cache.fetch(request.headers[:token])
+        @user = Rails.cache.fetch(request.headers[:token])
       end
     end
   end

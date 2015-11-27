@@ -5,7 +5,7 @@ module Api
 
       def create
         captcha = generate_captcha
-        SmsJob.perform_now(params[:mobile], SMS['验证码'], ["#{captcha}", '30'])
+        #SmsJob.perform_now(params[:mobile], SMS['验证码'], ["#{captcha}", '30'])
         Rails.cache.write(params[:mobile], captcha)
         render json: {code: 1}
       end

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body style="margin: 0; padding: 0; font-family: '微软雅黑';">
+<div style="background: #234969; width: 100%; height: 66px;">
+  <div style="width: 600px; margin: 0 auto;">
+    <%= image_tag(attachments['1.jpg'].url, style: "float: left") %>
+    <div style="clear: both;"></div>
+  </div>
+</div>
+<div style="width: 600px; margin: 0 auto;   text-align: center; height:130px; padding-top:70px;  border-bottom: 1px solid #e8eaed;">
+  <samp style="color: #ff572f; font-size: 40px;">恭喜报名成功!</samp>
+  <br/>
+  <samp style="font-size: 16px; color: #1c1c1c; margin-top:30px; display: block;">报名码:<%= @code %></samp>
+
+</div>
+<div style="width: 600px; margin:44px auto 0; font-size: 16px; line-height: 24px;">
+  <div style="margin:0 20px;">
+    <p><%= @name %>，您好：</p>
+    感谢您报名参加“美型-王宁运动学院 南京会议”，请届时准时参加。
+    <br/> 详情请咨询联系，曹经理 电话:<samp style="color: #ff572f; margin-left:5px;">182-5192-0722</samp>
+  </div>
+</div>
+
+<div style="width: 600px; margin:44px auto 0; font-size: 16px; line-height: 24px;">
+  <%= image_tag(attachments['6.jpg'].url) %>
+</div>
+
+<div style="background: #eaebf0; width: 100%;  height:100%; margin-top:40px;">
+  <div style="width: 600px; margin: 0 auto; padding:30px 0; border-bottom: 1px solid #d7dae1;">
+    <div style="float:left; width: 108px;"> <%= image_tag(attachments['3.jpg'].url) %></div>
+    <div style="float:right;">
+      <a href="#" style="margin-right: 10px;"> <%= image_tag(attachments['4.jpg'].url) %></a>
+      <a href="#"><%= image_tag(attachments['5.jpg'].url) %></a>
+    </div>
+    <div style="clear: both;"></div>
+
+  </div>
+  <div style="height:78px; line-height:78px; text-align: center; color: #8d97a6; font-size: 14px;">www.e-mxing.com
+    2014-2018 © All Rights Reserved.
+  </div>
+</div>
+
+
+</body>
+
+</html>

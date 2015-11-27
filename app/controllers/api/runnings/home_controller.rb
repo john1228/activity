@@ -5,10 +5,14 @@ module Api
       before_filter :auth_user, only: :follow
 
       def index
+        running = Running.find_by(phase: params[:phase])
         render json: {
                    code: 1,
-                   data: Running.where('phase < ?', params[:phase]).page(params[:page]||1).map { |running|
-                     running.as_json(only: [:name, :cover, :phase, :follows_count, :url])
+                   data: {
+                       current: running.as_json(only: [:name, :cover, :phase, :follows_count, :url]),
+                       history: Running.where('phase < ?', params[:phase]).page(params[:page]||1).map { |history_running|
+                         history_running.as_json(only: [:name, :cover, :phase, :follows_count, :url])
+                       }
                    }
                }
       end
@@ -19,7 +23,7 @@ module Api
         if follow.save
           render json: {code: 1}
         else
-          render json: {code: 0, message: '关注失败'}
+          render json: {code: 0, message: '已经关注'}
         end
       end
 

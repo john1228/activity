@@ -93,13 +93,15 @@ ActiveRecord::Schema.define(version: 20151125040618) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string   "source",     limit: 255
-    t.integer  "source_id",  limit: 4
-    t.integer  "user_id",    limit: 4
-    t.string   "content",    limit: 255
-    t.string   "image",      limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "source",      limit: 255
+    t.integer  "source_id",   limit: 4
+    t.integer  "user_id",     limit: 4
+    t.integer  "reply_id",    limit: 4
+    t.string   "content",     limit: 255
+    t.string   "image",       limit: 255
+    t.integer  "likes_count", limit: 4,   default: 0
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "follows", force: :cascade do |t|

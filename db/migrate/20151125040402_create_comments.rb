@@ -4,6 +4,7 @@ class CreateComments < ActiveRecord::Migration
       t.string :source
       t.integer :source_id
       t.references :user
+      t.integer :reply_id
       t.string :content
       t.string :image, array: true
       t.integer :likes_count, default: 0

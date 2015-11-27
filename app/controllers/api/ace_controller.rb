@@ -5,7 +5,7 @@ module Api
     def apply
       apply = Apply.ace.new(apply_params)
       if apply.save
-        PostmanJob.perform_later(apply.email, apply.name, '%05d'%apply.id)
+        PostmanJob.perform_later(AceMailer.name, apply.email, apply.name, '%05d'%apply.id)
         SmsJob.perform_later(apply.mobile, SMS['通知'], ["#{apply.name}", 'ACE'])
         response.headers['Access-Control-Allow-Origin'] = '*'
         render json: {code: 1}
