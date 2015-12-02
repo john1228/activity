@@ -6,7 +6,7 @@ class Apply < ActiveRecord::Base
   validates_uniqueness_of :email, scope: :activity_id, message: '该邮箱已经使用'
   scope :nj, -> { where(activity_id: -1) }
   scope :ace, -> { where(activity_id: 0) }
-  belongs_to :activity
+  belongs_to :activity, counter_cache: :apply_count
 
   def activity_name
     case activity_id

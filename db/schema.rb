@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(version: 20151201174643) do
     t.integer  "user_id",       limit: 4
     t.string   "title",         limit: 255
     t.string   "cover",         limit: 255
-    t.datetime "start"
-    t.datetime "end"
+    t.date     "start"
+    t.date     "end"
     t.datetime "enroll"
     t.string   "address",       limit: 255
     t.string   "gather",        limit: 255
@@ -43,10 +43,10 @@ ActiveRecord::Schema.define(version: 20151201174643) do
     t.text     "insurance",     limit: 65535
     t.text     "tip",           limit: 65535
     t.text     "bak",           limit: 65535
-    t.integer  "apply_count",   limit: 4
+    t.integer  "apply_count",   limit: 4,     default: 0
     t.integer  "view_count",    limit: 4
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.text     "html_body",     limit: 65535
     t.text     "html_subtitle", limit: 65535
   end

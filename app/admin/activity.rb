@@ -13,6 +13,28 @@ ActiveAdmin.register Activity do
     column :end
   end
 
+  show do
+    attributes_table do
+      row :title
+      row :html_subtitle
+      row :cover do
+        image_tag(activity.cover.url, width: 610, height: 264)
+      end
+      row :fee
+      row :address
+      row :limit
+      row :start do
+        activity.start.strftime('%Y-%m-%d')
+      end
+      row :end do
+        activity.end.strftime('%Y-%m-%d')
+      end
+      row :html_body do
+        raw activity.html_body
+      end
+    end
+  end
+
   form do |f|
     f.inputs do
       f.input :title
@@ -25,5 +47,6 @@ ActiveAdmin.register Activity do
       f.input :end, as: :datepicker
       f.cktext_area :html_body, :class => 'ckeditor'
     end
+    f.submit '提交'
   end
 end
