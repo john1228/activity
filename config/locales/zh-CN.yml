@@ -1,0 +1,28 @@
+"zh-CN":
+  activerecord:
+    models:
+      apply: '报名'
+      activity: '活动'
+    attributes:
+      apply:
+        activity_name: '活动'
+        name: '姓名'
+        mobile: '联系电话'
+        email: '邮箱'
+        created_at: '报名时间'
+      activity:
+        title: '标题'
+        html_subtitle: '摘要'
+        cover: '封面'
+        fee: '费用'
+        start: '开始时间'
+        end: '结束时间'
+        limit: '报名'
+        address: '地址'
+        html_body: '简介'
+  will_paginate:
+    previous_label: '上一页'
+    next_label: '下一页'
+
+
+

@@ -2,12 +2,14 @@ module Api
   module Activities
     class HomeController < ApplicationController
       def index
-        render json: {activity: Activity.order(id: :desc).page(params[:page]||1)}
+        render json: {activity: Activity.order(id: :desc).page(params[:page]||1).map { |activity|
+                 activity.as_json(only: [:id, :title, :cover, :start, :end, :address, :fee, :apply_count])
+               }}
       end
 
       def show
         activity = Activity.find(params[:id])
-        render json: {activity: activity.as_json(includes: :intros)}
+        render json: {activity: activity.as_json(only: [:id, :title, :html_subtitle, :cover, :start, :end, :address, :fee, :apply_count], methods: :created)}
       end
 
       def create
