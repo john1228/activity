@@ -8,7 +8,7 @@ class NjMailer < ApplicationMailer
     attachments.inline['5.jpg'] = File.read("#{Rails.root}/app/assets/images/nj/5.jpg")
     attachments.inline['6.jpg'] = File.read("#{Rails.root}/app/assets/images/nj/6.jpg")
     mail(
-        :subject => '美型-王宁运动学院(南京)报名提醒',
+        :subject => '美型-MR.X工作室特色课程报名提醒',
         :to => params[:to]
     )
   end
