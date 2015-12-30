@@ -3,14 +3,23 @@ ActiveAdmin.register Activity do
   permit_params :title, :html_subtitle, :cover, :fee, :address, :limit, :start, :end, :html_body
   index do
     column :title
-    column :cover
+    column :cover do |activity|
+      image_tag(activity.cover.url, width: (610/5), height: (264/5))
+    end
     column :fee
     column :address
     column :limit do |activity|
       "#{activity.apply_count.to_i}/#{activity.limit.to_i}"
     end
-    column :start
-    column :end
+    column :start do |activity|
+      activity.start.strftime('%Y-%m-%d')
+    end
+    column :end do |activity|
+      activity.end.strftime('%Y-%m-%d')
+    end
+    actions do |activity|
+      link_to('日程安排', admin_activity_schedules_path(activity))
+    end
   end
 
   show do

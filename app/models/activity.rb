@@ -1,6 +1,7 @@
 class Activity < ActiveRecord::Base
-  has_many :intros, class: ActivityIntro
-  has_many :shows, class: ActivityShow
+  has_many :intros, class: ActivityIntro, dependent: :destroy
+  has_many :shows, class: ActivityShow, dependent: :destroy
+  has_many :schedules, dependent: :destroy
 
   mount_uploader :cover, CoverUploader
 

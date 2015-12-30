@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151201174643) do
+ActiveRecord::Schema.define(version: 20151203025826) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -140,6 +140,18 @@ ActiveRecord::Schema.define(version: 20151201174643) do
     t.datetime "updated_at",                            null: false
     t.integer  "likes_count",   limit: 4,   default: 0
     t.integer  "views_count",   limit: 4,   default: 0
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.integer  "activity_id", limit: 4
+    t.date     "date"
+    t.string   "start",       limit: 255
+    t.string   "end",         limit: 255
+    t.string   "tutor",       limit: 255
+    t.string   "address",     limit: 255
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "title",       limit: 255, default: ""
   end
 
   create_table "users", force: :cascade do |t|

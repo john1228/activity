@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
       get '/:id/applies' => 'applies#index'
       post '/:id/applies' => 'applies#create'
+
+      get '/:id/schedules' => 'schedules#index'
     end
     #达人开跑
     namespace :runnings do
@@ -32,5 +34,8 @@ Rails.application.routes.draw do
 
     post '/ace' => 'ace#apply'
     post '/nj' => 'nj#apply'
+    post '/mr' => 'mr#apply'
   end
+
+  get 'webchat' => 'webchat#key'
 end

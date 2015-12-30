@@ -3,6 +3,8 @@ ActiveAdmin.register Apply do
   filter :name
   filter :email
   filter :created_at
+  filter :activity_id, as: :select, collection: proc { Activity.pluck(:title, :id) << ['ACE', 0] << ['南京会议', -1] }
+
   actions :index
 
   index do

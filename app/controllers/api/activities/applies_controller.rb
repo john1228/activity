@@ -6,7 +6,7 @@ module Activities
 
     def create
       apply = Apply.new(apply_params)
-      if apply_params.save
+      if apply.save
         render json: {code: 1}
       else
         render json: {code: 0, message: apply_params.errors.messages.values.join(',')}

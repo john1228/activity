@@ -3,7 +3,7 @@
 class CoverUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  storage :qiniu
+  storage :file
 
   def store_dir
     'mx_activity/activity'

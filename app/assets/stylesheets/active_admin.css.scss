@@ -9,13 +9,74 @@
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
+@import "jquery.timepicker";
+
+#header {
+  background-color: #234969;
+  background-image: linear-gradient(180deg, #234969, #234);
+  text-shadow: 0 0 0 #000;
+}
 
 #header #tabs li {
   font-size: 16px;
 }
 
+#header ul.tabs > li:hover > a {
+  background: none repeat scroll 0% 0% #325d81;
+  color: #FFF;
+}
+
+#header ul.tabs > li.current > a {
+  background: none repeat scroll 0% 0% #325d81;
+  color: #FFF;
+}
+
 body {
   font-size: 14px;
+}
+
+body.logged_out h2 {
+  font-size: 1em;
+  font-weight: bold;
+  line-height: 40px;
+  padding: 5px 10px 3px;
+  background-color: #234679;
+  background-image: linear-gradient(180deg, #234679, #234);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+  border: medium none;
+  color: #FFF;
+  margin: -13px -30px 20px;
+  text-align: center;
+}
+
+form input[type="submit"], form input[type="button"], form button {
+  border-radius: 200px;
+  display: inline-block;
+  font-weight: bold;
+  font-size: 1em;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 12px;
+  margin-right: 3px;
+  padding: 7px 16px 6px;
+  text-decoration: none;
+  background-color: #234679;
+  background-image: linear-gradient(180deg, #234679, #234);
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1), 0px 0px 0px 0px rgba(255, 255, 255, 0.92) inset;
+  border-width: 1px;
+  border-style: solid;
+  -moz-border-top-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  border-image: none;
+  border-color: #234679 #234679 #234679;
+  color: #EFEFEF;
+  cursor: pointer;
+}
+
+form input[type="submit"]:hover:not(.disabled), form input[type="button"]:hover:not(.disabled), form button:hover:not(.disabled) {
+  background-color: #234679;
+  background-image: linear-gradient(180deg, #234679, #234);
 }
 
 // Overriding any non-variable SASS must be done after the fact.
