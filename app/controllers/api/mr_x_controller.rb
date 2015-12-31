@@ -17,7 +17,7 @@ module Api
 
     private
     def mr_x_params
-      params.require(:nj).permit(:name, :mobile, :email)
+      params.require(:ace).permit(:name, :mobile, :email)
     end
   end
 end
