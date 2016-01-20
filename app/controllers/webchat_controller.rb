@@ -4,6 +4,7 @@ class WebchatController < ApplicationController
     timestamp = Time.now.to_i.to_s
     sign_key = sign('htto://www.e-mxing.com', nonce_str, timestamp)
     render json: {
+               appid: 'wx6709047495527262',
                timestamp: timestamp,
                nonce_str: nonce_str,
                key: sign_key
