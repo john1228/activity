@@ -27,7 +27,7 @@ class WebchatController < ApplicationController
       secret = '8e49133310752495e4af9eac5942f5ed'
       access_token_response = conn.get 'cgi-bin/token', grant_type: 'client_credential', appid: appid, secret: secret
       access_token = JSON.parse(access_token_response.body)['access_token']
-      Rails.cache.write('wx_access_token', access_token)
+      Rails.cache.write('wx_access_token', access_token, expires_in: 7200)
     end
     api_ticket_response = conn.get 'cgi-bin/ticket/getticket', type: 'jsapi', access_token: wx_access_token
     api_ticket = JSON.parse(api_ticket_response.body)['ticket']
