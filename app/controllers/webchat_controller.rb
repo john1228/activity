@@ -1,20 +1,17 @@
 class WebchatController < ApplicationController
   def key
-    nonce_str = %w'a b c d e f g h i j k l m n o p q r s t w v u x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9'.sample(16).join
-    timestamp = Time.now.to_i.to_s
-    sign_key = sign('http://e-mxing.com', nonce_str, timestamp)
-    render json: {
-               appid: 'wx6709047495527262',
-               timestamp: timestamp,
-               nonce_str: nonce_str,
-               key: sign_key
-           }
+    @appid = 'wxe08328a54d86afd8'
+    @nonce_str = SecureRandom.uuid
+    @timestamp = Time.now.to_i.to_s
+    @signature = sign(request.url, @nonce_str, @timestamp)
+    render layout: false
   end
 
   private
   def sign(url, nonce_str, timestamp)
     wx_api_ticket = Rails.cache.fetch('wx_api_ticket')
     wx_api_ticket = get_js_api_ticket if wx_api_ticket.blank?
+
     signature_string = "jsapi_ticket=" + wx_api_ticket + "&noncestr=" + nonce_str + "&timestamp=" + timestamp + "&url=" + url
     Digest::SHA1.hexdigest(signature_string)
   end
