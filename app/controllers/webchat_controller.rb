@@ -3,6 +3,7 @@ class WebchatController < ApplicationController
     @appid = 'wxe08328a54d86afd8'
     @nonce_str = SecureRandom.uuid
     @timestamp = Time.now.to_i.to_s
+    logger.info request.url
     @signature = sign(request.url, @nonce_str, @timestamp)
     render layout: false
   end
