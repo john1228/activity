@@ -2,7 +2,7 @@ class WebchatController < ApplicationController
   def key
     nonce_str = %w'a b c d e f g h i j k l m n o p q r s t w v u x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 0 1 2 3 4 5 6 7 8 9'.sample(16).join
     timestamp = Time.now.to_i.to_s
-    sign_key = sign('htto://e-mxing.com', nonce_str, timestamp)
+    sign_key = sign('http://e-mxing.com', nonce_str, timestamp)
     render json: {
                appid: 'wx6709047495527262',
                timestamp: timestamp,
@@ -32,5 +32,6 @@ class WebchatController < ApplicationController
     api_ticket_response = conn.get 'cgi-bin/ticket/getticket', type: 'jsapi', access_token: wx_access_token
     api_ticket = JSON.parse(api_ticket_response.body)['ticket']
     Rails.cache.write('wx_api_ticket', api_ticket, expires_in: 7200)
+    api_ticket
   end
 end
