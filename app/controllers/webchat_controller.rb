@@ -5,6 +5,7 @@ class WebchatController < ApplicationController
     sign_key = sign('htto://www.e-mxing.com', nonce_str, timestamp)
     render json: {
                timestamp: timestamp,
+               nonce_str: nonce_str,
                key: sign_key
            }
   end
