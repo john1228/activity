@@ -1,6 +1,6 @@
 class WebchatController < ApplicationController
   def key
-    @appid = 'wxe08328a54d86afd8'
+    @appid = 'wxf107a19401881934'
     @nonce_str = SecureRandom.uuid
     @timestamp = Time.now.to_i.to_s
     logger.info request.url
@@ -21,8 +21,8 @@ class WebchatController < ApplicationController
     wx_access_token = Rails.cache.fetch('wx_access_token')
     conn = Faraday.new(url: "https://api.weixin.qq.com/")
     if wx_access_token.blank?
-      appid = 'wxe08328a54d86afd8'
-      secret = '8e49133310752495e4af9eac5942f5ed'
+      appid = 'wxf107a19401881934'
+      secret = 'b9b95024a621f054e10c7ab94dd383e7'
       access_token_response = conn.get 'cgi-bin/token', grant_type: 'client_credential', appid: appid, secret: secret
       access_token = JSON.parse(access_token_response.body)['access_token']
       Rails.cache.write('wx_access_token', access_token, expires_in: 7200)
