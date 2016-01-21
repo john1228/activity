@@ -18,7 +18,7 @@
       wx.ready(function () {
           wx.onMenuShareTimeline({
               title: '测试分享', // 分享标题
-              link: <%= request.url %>, // 分享链接
+              link: '<%= request.url %>', // 分享链接
               imgUrl: 'http://saas.e-mxing.com/assets/background/logo-b4c79257825df43e15615ea7ae40c404.png', // 分享图标
               success: function () {
               },
@@ -29,7 +29,7 @@
           wx.onMenuShareAppMessage({
               title: '测试分享', // 分享标题
               desc: '测试描述',
-              link: <%= request.url %>, // 分享链接
+              link: '<%= request.url %>', // 分享链接
               imgUrl: 'http://saas.e-mxing.com/assets/background/logo-b4c79257825df43e15615ea7ae40c404.png', // 分享图标
               success: function () {
               },
